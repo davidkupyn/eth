@@ -46,6 +46,8 @@
 	export let id: $$Props['id'] = uuid();
 	export let use: Action<HTMLElement, any> | ExplicitBuilderReturn<any, any, any, any> = () => {};
 	export { className as class };
+
+	$: console.log(value);
 </script>
 
 <div>

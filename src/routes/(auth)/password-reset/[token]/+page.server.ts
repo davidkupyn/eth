@@ -1,6 +1,6 @@
 import { auth } from '$lib/server/auth';
-import { fail, redirect } from '@sveltejs/kit';
 import { is_valid_password_reset_token, validate_password_reset_token } from '$lib/server/token';
+import { fail, redirect } from '@sveltejs/kit';
 
 export async function load({ params }) {
 	const { token } = params;
@@ -18,7 +18,7 @@ export const actions = {
 
 		if (typeof password !== 'string' || password.length < 6 || password.length > 255) {
 			return fail(400, {
-				message: 'Invalid password'
+				message: 'Password must be at least 6 characters long'
 			});
 		}
 		try {

@@ -1,6 +1,6 @@
-import { redirect, fail } from '@sveltejs/kit';
-import { generate_email_verification_token } from '$lib/server/token';
 import { send_email_verification_link } from '$lib/server/email';
+import { generate_email_verification_token } from '$lib/server/token';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const load = async ({ locals }) => {
 	const session = await locals.auth.validate();

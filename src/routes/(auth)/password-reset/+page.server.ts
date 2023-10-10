@@ -1,10 +1,10 @@
 import { auth } from '$lib/server/auth';
-import { fail } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
-import { is_valid_email, send_password_reset_link } from '$lib/server/email';
-import { eq } from 'drizzle-orm';
 import { user as user_table } from '$lib/server/db/schema';
-import { generate_password_reset_token } from '../../lib/server/token.js';
+import { is_valid_email, send_password_reset_link } from '$lib/server/email';
+import { generate_password_reset_token } from '$lib/server/token.js';
+import { fail } from '@sveltejs/kit';
+import { eq } from 'drizzle-orm';
 
 export const actions = {
 	default: async ({ request }) => {
@@ -23,14 +23,15 @@ export const actions = {
 
 			if (!storedUser) {
 				return fail(400, {
-					message: 'User does not exist'
+					message: 'No user found with that email address'
 				});
 			}
 			const user = auth.transformDatabaseUser(storedUser);
 			const token = await generate_password_reset_token(user.userId);
 			await send_password_reset_link(token, user.email);
 			return {
-				success: true
+				success: true,
+				email
 			};
 		} catch (e) {
 			return fail(500, {

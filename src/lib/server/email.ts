@@ -8,8 +8,14 @@ export async function send_email_verification_link(token: string, email: string)
 	mailer.emails.send({
 		from: process.env.RESEND_FROM_EMAIL ?? '',
 		to: email,
-		subject: 'Hello World',
-		html: `<p>${url}</p>`
+		subject: 'Please verify your email address',
+		html: `
+		<p>Here is your verification link: 
+			<a href="${url}">
+				Verify email
+			</a>
+		</p>
+		`
 	});
 }
 
@@ -19,8 +25,15 @@ export async function send_password_reset_link(token: string, email: string) {
 	mailer.emails.send({
 		from: process.env.RESEND_FROM_EMAIL ?? '',
 		to: email,
-		subject: 'Hello World',
-		html: `<p>${url}</p>`
+		subject: 'Password reset request',
+		html: `
+		<p>
+			Here is your password reset link: 
+			<a href="${url}">
+				Reset password
+			</a>
+		</p>
+		`
 	});
 }
 
