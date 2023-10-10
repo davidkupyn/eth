@@ -50,7 +50,7 @@
 
 <div>
 	{#if label}
-		<Label for={id} class="mb-1.5" {required}>
+		<Label for={id} class={!description ? 'mb-1' : undefined} {required}>
 			{label}
 		</Label>
 	{/if}

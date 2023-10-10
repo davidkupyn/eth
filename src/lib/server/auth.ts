@@ -8,5 +8,13 @@ import { auth_tables } from './db/schema';
 export const auth = lucia({
 	adapter: libsql(libsql_client, auth_tables),
 	middleware: sveltekit(),
-	env: dev ? 'DEV' : 'PROD'
+	env: dev ? 'DEV' : 'PROD',
+	getUserAttributes: (data) => {
+		return {
+			email: data.email,
+			emailVerified: Boolean(data.email_verified)
+		};
+	}
 });
+
+export type Auth = typeof auth;

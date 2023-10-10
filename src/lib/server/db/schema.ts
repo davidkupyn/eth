@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { blob, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { blob, int, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const auth_tables = {
 	user: 'user',
@@ -8,7 +8,9 @@ export const auth_tables = {
 };
 
 export const user = sqliteTable(auth_tables.user, {
-	id: text('id').primaryKey()
+	id: text('id').primaryKey(),
+	email: text('email').notNull(),
+	email_verified: int('email_verified').notNull()
 });
 
 export const session = sqliteTable(auth_tables.session, {

@@ -6,13 +6,15 @@
 	import { cn } from '$lib/helpers';
 	import { Zap } from 'lucide-svelte';
 	import '../app.postcss';
+
+	export let data;
 </script>
 
 <svelte:head>
-	<title>Eth</title>
+	<title>Ethera</title>
 	<meta
 		name="description"
-		content="Empower your web development with Eth - combining Lucia, Drizzle ORM, Tailwind CSS, and SvelteKit for speed and elegance."
+		content="Empower your web development with Ethera - combining Lucia, Drizzle ORM, Tailwind CSS, and SvelteKit for speed and elegance."
 	/>
 	<meta name="author" content="David Kupyn" />
 </svelte:head>
@@ -28,7 +30,7 @@
 			class="font-bold flex items-center gap-2 p-1 focus-visible:ring-2 focus-visible:outline-none rounded-lg transition ring-offset-base-50 dark:ring-offset-base-950 focus-visible:ring-primary-600"
 		>
 			<Zap size="20" class="text-accent" />
-			Eth
+			Ethera
 		</a>
 		<nav>
 			<ul class="inline-flex gap-4 items-center">
@@ -36,12 +38,18 @@
 					<Button href="/about" variant="text" class="-mx-4">About</Button>
 				</li>
 				<Separator orientation="vertical" class="h-6 mx-2" />
-				<li>
-					<Button href="/sign-in" variant="ghost">Sign in</Button>
-				</li>
-				<li>
-					<Button href="/sign-up">Sign up</Button>
-				</li>
+				{#if !data.user_email}
+					<li>
+						<Button href="/sign-in" variant="ghost">Sign in</Button>
+					</li>
+					<li>
+						<Button href="/sign-up">Sign up</Button>
+					</li>
+				{:else}
+					<li>
+						<Button href="/sign-out" variant="ghost" class="-mx-4">Sign out</Button>
+					</li>
+				{/if}
 			</ul>
 		</nav>
 	</div>

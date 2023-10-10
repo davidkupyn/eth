@@ -17,11 +17,11 @@
 				in:scale={{ duration: 400, start: 0.9 }}
 				class="text-center font-display antialiased py-2.5 [text-wrap:balance] text-4xl md:text-6xl bg-clip-text transition-all duration-1000 text-transparent bg-gradient-to-t selection:text-base-950 dark:selection:text-base-50 from-base-950 via-base-900 to-base-700 md:to-base-500 dark:from-base-400 dark:via-base-100 tracking-tighter dark:to-base-50"
 			>
-				Build Fast with
+				Accelerate Your
 				<span
 					class="bg-clip-text ml-1 text-transparent bg-gradient-to-t from-accent-focus to-accent-400 selection:text-accent-500 dark:selection:text-accent-400"
 				>
-					Eth.
+					Development.
 				</span>
 			</h1>
 			<p

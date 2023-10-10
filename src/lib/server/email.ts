@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 export const mailer = new Resend(process.env.RESEND_API_KEY);
 
 export async function send_email_verification_link(token: string, email: string) {
-	const url = `http://localhost:5173/email-verification/${token}`;
+	const url = `${process.env.WEBSITE_URL}/email-verification/${token}`;
 
 	mailer.emails.send({
 		from: process.env.RESEND_FROM_EMAIL ?? '',
@@ -11,12 +11,10 @@ export async function send_email_verification_link(token: string, email: string)
 		subject: 'Hello World',
 		html: `<p>${url}</p>`
 	});
-
-	console.log(`Your email verification link: ${url}`);
 }
 
 export async function send_password_reset_link(token: string, email: string) {
-	const url = `http://localhost:5173/password-reset/${token}`;
+	const url = `${process.env.WEBSITE_URL}/password-reset/${token}`;
 
 	mailer.emails.send({
 		from: process.env.RESEND_FROM_EMAIL ?? '',

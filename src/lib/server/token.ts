@@ -84,7 +84,7 @@ export async function validate_password_reset_token(token: string) {
 	return stored_token.user_id;
 }
 
-export async function isValidPasswordResetToken(token: string) {
+export async function is_valid_password_reset_token(token: string) {
 	const stored_token = await db.query.password_reset_token.findFirst({
 		where: eq(password_reset_token.id, token)
 	});
