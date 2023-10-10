@@ -1,4 +1,5 @@
 <script>
+	import { scale } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import ThemeProvider from '$lib/components/theme-switcher/theme-provider.svelte';
 	import Button from '$lib/components/ui/button.svelte';
@@ -6,6 +7,7 @@
 	import { cn } from '$lib/helpers';
 	import { Zap } from 'lucide-svelte';
 	import '../app.postcss';
+	import { Avatar } from '$lib/components/ui/avatar';
 
 	export let data;
 </script>
@@ -43,7 +45,15 @@
 					</li>
 				{:else}
 					<li>
-						<Button href="/sign-out" variant="ghost" class="-mx-4">Sign out</Button>
+						<Button href="/sign-out" variant="ghost" class="">Sign out</Button>
+					</li>
+					<li>
+						<Avatar
+							src="https://api.dicebear.com/7.x/thumbs/svg?radius=50&size=36&backgroundColor=transparent&seed={data.user_email}&shapeColor=FBBF24"
+							alt="Profile Picture"
+							class="bg-background"
+							fallback={data.user_email[0].toUpperCase()}
+						/>
 					</li>
 				{/if}
 			</ul>
