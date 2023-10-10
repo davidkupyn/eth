@@ -34,10 +34,6 @@
 		</a>
 		<nav>
 			<ul class="inline-flex gap-4 items-center">
-				<li>
-					<Button href="/about" variant="text" class="-mx-4">About</Button>
-				</li>
-				<Separator orientation="vertical" class="h-6 mx-2" />
 				{#if !data.user_email}
 					<li>
 						<Button href="/sign-in" variant="ghost">Sign in</Button>

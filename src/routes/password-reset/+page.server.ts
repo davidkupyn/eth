@@ -1,11 +1,10 @@
 import { auth } from '$lib/server/auth';
 import { fail } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
-import { generate_email_verification_token } from '$lib/server/token';
 import { is_valid_email, send_password_reset_link } from '$lib/server/email';
-
 import { eq } from 'drizzle-orm';
 import { user as user_table } from '$lib/server/db/schema';
+import { generate_password_reset_token } from '../../lib/server/token.js';
 
 export const actions = {
 	default: async ({ request }) => {
@@ -14,7 +13,7 @@ export const actions = {
 
 		if (!is_valid_email(email)) {
 			return fail(400, {
-				message: 'Invalid email'
+				message: 'Please enter a valid email address'
 			});
 		}
 		try {
@@ -28,7 +27,7 @@ export const actions = {
 				});
 			}
 			const user = auth.transformDatabaseUser(storedUser);
-			const token = await generate_email_verification_token(user.userId);
+			const token = await generate_password_reset_token(user.userId);
 			await send_password_reset_link(token, user.email);
 			return {
 				success: true

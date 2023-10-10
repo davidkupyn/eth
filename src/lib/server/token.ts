@@ -88,7 +88,7 @@ export async function is_valid_password_reset_token(token: string) {
 	const stored_token = await db.query.password_reset_token.findFirst({
 		where: eq(password_reset_token.id, token)
 	});
-
+	console.log(token);
 	if (!stored_token) return false;
 
 	if (!isWithinExpiration(stored_token.expires)) throw new Error('Expired token');

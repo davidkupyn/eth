@@ -1,10 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { scale } from 'svelte/transition';
 	import Button from '$lib/components/ui/button.svelte';
 	import { Card } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
 	import { Eye, EyeOff } from 'lucide-svelte';
+	import { scale } from 'svelte/transition';
 
 	export let form;
 
