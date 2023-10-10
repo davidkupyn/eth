@@ -46,7 +46,7 @@
 				</Input>
 
 				<Footer>
-					<Button type="submit" class="w-full">Sign in</Button>
+					<Button type="submit" class="w-full">Sign up</Button>
 				</Footer>
 			</form>
 		</Card>

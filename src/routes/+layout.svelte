@@ -1,9 +1,7 @@
 <script>
-	import { scale } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import ThemeProvider from '$lib/components/theme-switcher/theme-provider.svelte';
 	import Button from '$lib/components/ui/button.svelte';
-	import Separator from '$lib/components/ui/separator.svelte';
 	import { cn } from '$lib/helpers';
 	import { Zap } from 'lucide-svelte';
 	import '../app.postcss';

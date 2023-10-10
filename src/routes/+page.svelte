@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 
+	export let data;
 	let mounted = false;
 	onMount(() => {
 		mounted = true;
@@ -31,12 +32,14 @@
 				A dynamic stack blending Lucia, Drizzle ORM, Tailwind CSS, and SvelteKit for swift and
 				elegant web development.
 			</p>
-			<span in:scale={{ duration: 400, opacity: 0.9, start: 0.8 }}>
-				<Button size="lg">
-					Get started
-					<ArrowRight class="group-hover:translate-x-1 transition" size="16" />
-				</Button>
-			</span>
+			{#if !data.user_email}
+				<span in:scale={{ duration: 400, opacity: 0.9, start: 0.8 }}>
+					<Button size="lg" href="/sign-up">
+						Get started
+						<ArrowRight class="group-hover:translate-x-1 transition" size="16" />
+					</Button>
+				</span>
+			{/if}
 		</div>
 	</main>
 {/key}
