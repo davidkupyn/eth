@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { COLOR_SCHEMES, MEDIA } from './constants';
 	import { disable_animation, get_system_theme, get_theme } from './helpers';
-	import { theme_store } from './index';
+	import { theme_store } from '.';
 	import ThemeScript from './theme-script.svelte';
 
 	export let forced_theme: string | undefined = undefined;

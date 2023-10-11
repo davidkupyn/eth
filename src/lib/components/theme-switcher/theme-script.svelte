@@ -6,7 +6,7 @@
 	export let attribute: string;
 	export let enable_system: boolean;
 	export let default_theme: string;
-	export let value: { [themeName: string]: string } | undefined;
+	export let value: { [theme_name: string]: string } | undefined;
 	export let attrs: any;
 
 	// These are minified via Terser and then updated by hand, don't recommend
