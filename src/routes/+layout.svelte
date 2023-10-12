@@ -33,21 +33,21 @@
 			Ethera
 		</a>
 		<nav>
-			<ul class="inline-flex gap-4 items-center">
+			<ul class="inline-flex gap-3 items-center">
 				{#if !data.user_email}
 					<li>
-						<Button href="/sign-in" variant="ghost">Sign in</Button>
+						<Button href="/sign-in" variant="ghost" size="sm">Sign in</Button>
 					</li>
 					<li>
-						<Button href="/sign-up">Sign up</Button>
+						<Button href="/sign-up" size="sm">Sign up</Button>
 					</li>
 				{:else}
 					<li>
-						<Button href="/sign-out" variant="ghost" class="">Sign out</Button>
+						<Button href="/sign-out" variant="ghost" size="sm">Sign out</Button>
 					</li>
 					<li>
 						<Avatar
-							src="https://api.dicebear.com/7.x/thumbs/svg?radius=50&size=36&backgroundColor=transparent&seed={data.user_email}&shapeColor=FBBF24"
+							src="https://api.dicebear.com/7.x/thumbs/svg?radius=50&size=32&backgroundColor=transparent&seed={data.user_email}&shapeColor=FBBF24"
 							alt="Profile Picture"
 							class="bg-background"
 							fallback={data.user_email[0].toUpperCase()}
