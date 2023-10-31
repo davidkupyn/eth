@@ -23,7 +23,7 @@ const config = {
 					DEFAULT: 'var(--color-accent)',
 					focus: 'var(--color-accent-focus)',
 					foreground: 'var(--color-accent-foreground)',
-					...colors.amber
+					...colors.rose
 				},
 				base: colors.zinc,
 				background: 'hsl(var(--color-background))',
@@ -77,8 +77,8 @@ const config = {
 				'3xl': 'calc(var(--radius) + 1.0rem)'
 			},
 			fontFamily: {
-				sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-				display: ['Manrope', ...defaultTheme.fontFamily.sans]
+				sans: ['Inter', ...defaultTheme.fontFamily.sans],
+				display: ['Inter', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},

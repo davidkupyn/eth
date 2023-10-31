@@ -7,7 +7,7 @@
 
 	export let form;
 
-	let isPasswordShown = false;
+	let is_password_shown = false;
 	let email_value = '';
 	let loading = false;
 </script>
@@ -41,7 +41,7 @@
 			<Input
 				label="Password"
 				name="password"
-				type={isPasswordShown ? 'text' : 'password'}
+				type={is_password_shown ? 'text' : 'password'}
 				error={form?.password}
 				required
 			>
@@ -49,15 +49,16 @@
 					type="button"
 					variant="text"
 					slot="suffix"
-					class="-mx-4"
+					class="-mx-3.5"
+					size="icon"
 					on:click={() => {
-						isPasswordShown = !isPasswordShown;
+						is_password_shown = !is_password_shown;
 					}}
 				>
-					{#if isPasswordShown}
-						<Eye size="20" />
+					{#if is_password_shown}
+						<Eye size="16" />
 					{:else}
-						<EyeOff size="20" />
+						<EyeOff size="16" />
 					{/if}
 				</Button>
 			</Input>

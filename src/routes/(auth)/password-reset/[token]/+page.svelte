@@ -6,7 +6,7 @@
 	import { Eye, EyeOff } from 'lucide-svelte';
 
 	export let form;
-	let isPasswordShown = false;
+	let is_password_shown = false;
 </script>
 
 <Card let:Header let:Footer class="w-full">
@@ -19,7 +19,7 @@
 			label="New Password"
 			name="password"
 			description="Must be at least 6 characters long."
-			type={isPasswordShown ? 'text' : 'password'}
+			type={is_password_shown ? 'text' : 'password'}
 			error={form?.message}
 			required
 		>
@@ -27,15 +27,16 @@
 				type="button"
 				variant="text"
 				slot="suffix"
-				class="-mx-4"
+				size="icon"
+				class="-mx-3.5"
 				on:click={() => {
-					isPasswordShown = !isPasswordShown;
+					is_password_shown = !is_password_shown;
 				}}
 			>
-				{#if isPasswordShown}
-					<Eye size="20" />
+				{#if is_password_shown}
+					<Eye size="16" />
 				{:else}
-					<EyeOff size="20" />
+					<EyeOff size="16" />
 				{/if}
 			</Button>
 		</Input>

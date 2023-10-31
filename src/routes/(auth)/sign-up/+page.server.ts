@@ -1,7 +1,14 @@
 import { auth } from '$lib/server/auth';
-import { is_valid_email, send_email_verification_link } from '$lib/server/email';
+import { send_email_verification_link } from '$lib/server/email';
 import { generate_email_verification_token } from '$lib/server/token';
 import { fail, redirect } from '@sveltejs/kit';
+import { setError, superValidate } from 'sveltekit-superforms/client';
+import { z } from 'zod';
+
+const SignUpSchema = z.object({
+	email: z.string().email(),
+	password: z.string().min(6).max(255)
+});
 
 export const load = async ({ locals }) => {
 	const session = await locals.auth.validate();
@@ -9,26 +16,19 @@ export const load = async ({ locals }) => {
 		if (!session.user.emailVerified) throw redirect(302, '/email-verification');
 		throw redirect(302, '/');
 	}
-	return {};
+	return {
+		form: superValidate(SignUpSchema)
+	};
 };
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const formData = await request.formData();
-		const email = formData.get('email');
-		const password = formData.get('password');
+		const form = await superValidate(request, SignUpSchema);
 
-		if (!is_valid_email(email)) {
-			return fail(400, {
-				email: 'Please enter a valid email address'
-			});
+		if (!form.valid) {
+			return fail(400, { form });
 		}
-
-		if (typeof password !== 'string' || password.length < 6 || password.length > 255) {
-			return fail(400, {
-				password: 'Password must be at least 6 characters long'
-			});
-		}
+		const { email, password } = form.data;
 
 		try {
 			const user = await auth.createUser({
@@ -51,10 +51,16 @@ export const actions = {
 
 			const token = await generate_email_verification_token(user.userId);
 			await send_email_verification_link(token, user.email);
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
+			if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+				setError(form, 'email', 'Email already in use');
+				return fail(400, {
+					form
+				});
+			}
 			return fail(500, {
-				message: 'An unknown error occurred'
+				form
 			});
 		}
 		throw redirect(302, '/email-verification');

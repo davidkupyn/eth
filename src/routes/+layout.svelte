@@ -3,7 +3,7 @@
 	import ThemeProvider from '$lib/components/theme-switcher/theme-provider.svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import { cn } from '$lib/helpers';
-	import { Zap } from 'lucide-svelte';
+	import { Gauge, Zap } from 'lucide-svelte';
 	import '../app.postcss';
 	import { Avatar } from '$lib/components/ui/avatar';
 
@@ -29,7 +29,7 @@
 			aria-label="Go to home page"
 			class="font-bold flex items-center gap-2 p-1 focus-visible:ring-2 focus-visible:outline-none rounded-lg transition ring-offset-base-50 dark:ring-offset-base-950 focus-visible:ring-primary-600"
 		>
-			<Zap size="20" class="text-accent" />
+			<Gauge size="20" class="text-accent" />
 			Ethera
 		</a>
 		<nav>

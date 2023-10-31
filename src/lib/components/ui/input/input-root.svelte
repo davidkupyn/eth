@@ -9,12 +9,8 @@
 	import { AlertCircle } from 'lucide-svelte';
 	import Prefix from './input-prefix.svelte';
 	import Suffix from './input-suffix.svelte';
-	import { inputStyles } from '.';
+	import { inputStyles, type InputEvents } from '.';
 	import type { ExplicitBuilderReturn } from '@melt-ui/svelte/internal/helpers';
-
-	type FormInputEvent<T extends Event = Event> = T & {
-		currentTarget: EventTarget & HTMLInputElement;
-	};
 
 	type $$Props = HTMLInputAttributes & {
 		use?: Action<HTMLElement, any> | ExplicitBuilderReturn<any, any, any, any>;
@@ -22,20 +18,7 @@
 		label?: string;
 		error?: string;
 	};
-	type $$Events = {
-		blur: FormInputEvent<FocusEvent>;
-		change: FormInputEvent<Event>;
-		click: FormInputEvent<MouseEvent>;
-		focus: FormInputEvent<FocusEvent>;
-		keydown: FormInputEvent<KeyboardEvent>;
-		keypress: FormInputEvent<KeyboardEvent>;
-		keyup: FormInputEvent<KeyboardEvent>;
-		mouseover: FormInputEvent<MouseEvent>;
-		mouseenter: FormInputEvent<MouseEvent>;
-		mouseleave: FormInputEvent<MouseEvent>;
-		paste: FormInputEvent<ClipboardEvent>;
-		input: FormInputEvent<InputEvent>;
-	};
+	type $$Events = InputEvents;
 
 	let className: $$Props['class'] = undefined;
 	export let value: $$Props['value'] = undefined;
@@ -46,8 +29,6 @@
 	export let id: $$Props['id'] = uuid();
 	export let use: Action<HTMLElement, any> | ExplicitBuilderReturn<any, any, any, any> = () => {};
 	export { className as class };
-
-	$: console.log(value);
 </script>
 
 <div>
@@ -67,7 +48,7 @@
 		<input
 			class={cn(inputStyles(), $$slots.prefix && 'pl-10', $$slots.suffix && 'pr-10', className)}
 			id={label ? id : undefined}
-			data-invalid={error || undefined}
+			data-invalid={!!error || undefined}
 			bind:value
 			on:blur
 			on:change

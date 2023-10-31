@@ -20,7 +20,7 @@
 			>
 				Accelerate Your
 				<span
-					class="bg-clip-text ml-1 text-transparent bg-gradient-to-t from-accent-focus to-accent-400 selection:text-accent-500 dark:selection:text-accent-400"
+					class="bg-clip-text ml-1 text-transparent bg-gradient-to-t from-accent-focus to-accent selection:text-accent-500 dark:selection:text-accent-400"
 				>
 					Development.
 				</span>
