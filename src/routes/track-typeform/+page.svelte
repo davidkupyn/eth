@@ -43,7 +43,7 @@
 			required
 			class="w-full"
 			bind:value={typeformId}
-			error={!typeformId ? 'Typeform ID is required' : undefined}
+			error={!typeformId && 'Typeform ID is required'}
 		/>
 	</div>
 	<Card class="h-[700px] w-[800px] max-w-full">
@@ -51,7 +51,7 @@
 			<div
 				in:scale={{ start: 0.95, duration: 300 }}
 				data-tf-widget={typeformId}
-				data-tf-opacity="100"
+				data-tf-opacity="0.5"
 				data-tf-iframe-props="title=Form"
 				data-tf-transitive-search-params
 				data-tf-medium="snippet"

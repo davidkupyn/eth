@@ -6,7 +6,7 @@
 	import Description from './input-description.svelte';
 	import Error from './input-error.svelte';
 	import Label from '../label.svelte';
-	import { AlertCircle } from 'lucide-svelte';
+	import { XCircle } from 'lucide-svelte';
 	import Prefix from './input-prefix.svelte';
 	import Suffix from './input-suffix.svelte';
 	import { inputStyles, type InputEvents } from '.';
@@ -16,7 +16,7 @@
 		use?: Action<HTMLElement, any> | ExplicitBuilderReturn<any, any, any, any>;
 		description?: string;
 		label?: string;
-		error?: string;
+		error?: boolean | string;
 	};
 	type $$Events = InputEvents;
 
@@ -33,7 +33,7 @@
 
 <div>
 	{#if label}
-		<Label for={id} class={!description ? 'mb-1' : undefined} {required}>
+		<Label for={id} class="mb-1.5" {required}>
 			{label}
 		</Label>
 	{/if}
@@ -48,7 +48,7 @@
 		<input
 			class={cn(inputStyles(), $$slots.prefix && 'pl-10', $$slots.suffix && 'pr-10', className)}
 			id={label ? id : undefined}
-			data-invalid={!!error || undefined}
+			data-invalid={error || undefined}
 			bind:value
 			on:blur
 			on:change
@@ -77,12 +77,12 @@
 		{:else if error}
 			<Suffix>
 				<span transition:scale={{ start: 0.5, duration: 200 }}>
-					<AlertCircle class="text-error" size="16" />
+					<XCircle class="text-error" size="16" />
 				</span>
 			</Suffix>
 		{/if}
 	</div>
-	{#if error}
+	{#if error !== '' && typeof error === 'string'}
 		<Error>
 			{error}
 		</Error>

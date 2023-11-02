@@ -53,12 +53,14 @@ export const actions = {
 			await send_email_verification_link(token, user.email);
 		} catch (error: any) {
 			console.error(error);
-			if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+			if (error.code === 'SQLITE_CONSTRAINT') {
 				setError(form, 'email', 'Email already in use');
 				return fail(400, {
 					form
 				});
 			}
+			setError(form, 'email', 'Something went wrong');
+			setError(form, 'password', 'Something went wrong');
 			return fail(500, {
 				form
 			});

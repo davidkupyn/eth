@@ -21,7 +21,6 @@
 		use:enhance={() => {
 			loading = true;
 			return async ({ update }) => {
-				await new Promise((r) => setTimeout(r, 200));
 				loading = false;
 				update();
 			};
