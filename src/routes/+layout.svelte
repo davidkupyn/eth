@@ -1,11 +1,11 @@
 <script>
 	import { page } from '$app/stores';
-	import ThemeProvider from '$lib/components/theme-switcher/theme-provider.svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import { cn } from '$lib/helpers';
 	import { Gauge } from 'lucide-svelte';
 	import '../app.postcss';
 	import { Avatar } from '$lib/components/ui/avatar';
+	import { ModeWatcher } from 'mode-watcher';
 
 	export let data;
 </script>
@@ -18,7 +18,7 @@
 	/>
 	<meta name="author" content="David Kupyn" />
 </svelte:head>
-<ThemeProvider attribute="class" disable_transition_on_change storage_key="essense-theme" />
+<ModeWatcher />
 
 <header
 	class={cn(
