@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-[ethera.kupyn.dev](ethera.kupyn.dev)
+[https://ethera-one.vercel.app/](https://ethera-one.vercel.app/)
 
   
   
